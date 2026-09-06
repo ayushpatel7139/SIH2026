@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #111827; /* Gray 900 - Deep charcoal for readable text */
+    --muted: #4b5563; /* Gray 600 - Secondary text */
+    --cream: #fdfcfb; /* Very warm, premium off-white surface */
+    --paper: #ffffff; /* Pure white for elevated cards */
+    
+    --primary: #023e8a; /* Deep Trustworthy Blue */
+    --primary-light: #f0f4f8; /* Soft blue for active states */
+    
+    --action: #ea580c; /* Saffron/Orange for primary actions */
+    --action-hover: #c2410c; 
+    
+    --success: #059669; /* Emerald Green */
+    --success-bg: #ecfdf5; 
+    
+    --warning: #d97706; /* Amber */
+    --warning-bg: #fffbeb; 
+    
+    --danger: #dc2626; /* Red */
+    --danger-bg: #fef2f2; 
+    
+    --line: #e5e7eb; /* Gray 200 for soft borders */
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  .welcome-page {
+    @apply min-h-screen selection:bg-orange-100;
+  }
+  
+  .welcome-container {
+    @apply w-full max-w-7xl mx-auto flex flex-col;
+  }
+
+  /* Shared Buttons */
+  .primary-button {
+    @apply bg-[var(--action)] text-white px-6 py-3 rounded-lg font-bold 
+           shadow-sm hover:bg-[var(--action-hover)] hover:shadow-md hover:-translate-y-0.5
+           transition-all duration-200 flex items-center justify-center gap-2;
+  }
+  
+  .secondary-button {
+    @apply text-[var(--action)] bg-white border border-[var(--action)] 
+           px-6 py-3 rounded-lg font-bold hover:bg-orange-50 hover:-translate-y-0.5
+           transition-all duration-200 flex items-center justify-center gap-2 shadow-sm;
+  }
+  
+  .ghost-button {
+    @apply text-[var(--muted)] hover:text-[var(--ink)] font-bold 
+           transition-colors px-4 py-2 flex items-center gap-2;
+  }
+  
+  /* Cards */
+  .card-standard {
+    @apply bg-[var(--paper)] rounded-2xl border border-[var(--line)] shadow-sm;
+  }
+  
+  .card-interactive {
+    @apply card-standard hover:border-slate-300 hover:shadow-md cursor-pointer transition-all hover:-translate-y-1;
+  }
+  
+  .card-selected {
+    @apply bg-[var(--primary-light)] rounded-2xl border-2 border-[var(--primary)] shadow-md transform -translate-y-1;
+  }
+
+  /* Typography helpers */
+  .eyebrow {
+    @apply text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider mb-2;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Print Styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; }
+  .welcome-page, .welcome-container { 
+    background: white !important; 
+    padding: 0 !important; 
+    margin: 0 !important; 
+    width: 100% !important; 
+  }
+  .break-inside-avoid { break-inside: avoid; }
+}
