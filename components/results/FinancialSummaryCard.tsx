@@ -1,3 +1,3 @@
-export default function FinancialSummaryCard() {
+﻿export default function FinancialSummaryCard() {
   return null;
 }

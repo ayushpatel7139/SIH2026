@@ -1,3 +1,3 @@
-export default function CompetitorDensityCard() {
+﻿export default function CompetitorDensityCard() {
   return null;
 }

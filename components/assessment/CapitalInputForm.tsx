@@ -1,3 +1,3 @@
-export default function CapitalInputForm() {
+﻿export default function CapitalInputForm() {
   return null;
 }

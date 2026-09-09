@@ -1,4 +1,4 @@
-interface FeasibilityScoreGaugeProps {
+﻿interface FeasibilityScoreGaugeProps {
   score: number;
 }
 

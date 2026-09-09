@@ -7,7 +7,7 @@ import { analyzeLocalMarket } from "@/lib/market-data";
 import { calculateFinancials } from "@/lib/calculator";
 import { generateRiskAnalysis } from "@/lib/feasibility";
 import { getMatchingSchemes } from "@/lib/scheme-data";
-import { CheckCircle2, TrendingUp, ShieldCheck, Download, Plus, ArrowRight, Sparkles } from "lucide-react";
+import { CircleCheck, ChartNoAxesCombined, Landmark, Download, Plus, ArrowRight, Sparkles } from "lucide-react";
 
 export default function SuccessScreen() {
   const router = useRouter();
@@ -63,11 +63,7 @@ export default function SuccessScreen() {
   return (
     <main className="welcome-page min-h-screen bg-[var(--cream)] relative overflow-hidden flex items-center justify-center p-4 sm:p-8 fade-in">
       
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-400/20 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
+
 
       <div className="w-full max-w-2xl mx-auto bg-white/80 backdrop-blur-xl rounded-[2.5rem] border border-[var(--line)] shadow-2xl overflow-hidden flex flex-col relative z-10">
         
@@ -75,14 +71,14 @@ export default function SuccessScreen() {
         <div className="p-8 sm:p-12 text-center relative overflow-hidden">
           
           <div className="w-24 h-24 bg-green-50 rounded-3xl border-2 border-green-200 mx-auto flex items-center justify-center mb-8 shadow-sm relative z-10 animate-in zoom-in duration-500">
-            <CheckCircle2 className="text-[var(--success)] w-12 h-12" />
+            <CircleCheck className="text-[var(--success)] w-12 h-12" />
           </div>
           
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[var(--ink)] mb-6 tracking-tight relative z-10 leading-tight">
-            YOU'VE GOT A PLAN.<br />NOW TAKE THE NEXT STEP.
+            Your roadmap is ready.
           </h1>
           <p className="text-base sm:text-lg text-[var(--muted)] font-medium max-w-md mx-auto relative z-10 leading-relaxed">
-            Your business assessment is ready. Use your report to validate the opportunity, compare financing options and make your next decision with confidence.
+            Your business analysis is ready. Use your report to validate the opportunity, compare financing options and make your next decision with confidence.
           </p>
         </div>
 
@@ -91,17 +87,17 @@ export default function SuccessScreen() {
           
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
             
-            <div className="bg-white border border-[var(--line)] rounded-2xl p-6 text-center shadow-sm">
+            <div className="card-standard p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--primary)]">
-                  <TrendingUp className="w-5 h-5" />
+                  <ChartNoAxesCombined className="w-5 h-5" />
                 </div>
               </div>
               <p className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-widest mb-2">Business Idea</p>
               <p className="text-base font-extrabold text-[var(--ink)]">Assessed</p>
             </div>
             
-            <div className="bg-white border border-[var(--line)] rounded-2xl p-6 text-center shadow-sm">
+            <div className="card-standard p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500">
                   <span className="font-extrabold text-lg">₹</span>
@@ -111,10 +107,10 @@ export default function SuccessScreen() {
               <p className="text-base font-extrabold text-[var(--ink)]">Prepared</p>
             </div>
             
-            <div className="bg-white border border-[var(--line)] rounded-2xl p-6 text-center shadow-sm">
+            <div className="card-standard p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-[var(--success)]">
-                  <ShieldCheck className="w-5 h-5" />
+                  <Landmark className="w-5 h-5" />
                 </div>
               </div>
               <p className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-widest mb-2">Financing</p>
@@ -129,7 +125,7 @@ export default function SuccessScreen() {
           <div className="w-full flex flex-col gap-4 max-w-sm mx-auto mb-12">
             <button
               onClick={handleViewReport}
-              className="primary-button w-full py-5 text-center text-lg shadow-xl shadow-orange-500/20 hover:-translate-y-1"
+              className="primary-button btn-lg w-full text-center shadow-xl shadow-orange-500/20 hover:-translate-y-1"
             >
               <Sparkles className="w-5 h-5 mr-2" /> View Final Report <ArrowRight className="w-5 h-5 ml-2" />
             </button>
@@ -138,13 +134,13 @@ export default function SuccessScreen() {
                 handleViewReport();
                 setTimeout(() => window.print(), 500);
               }}
-              className="ghost-button w-full flex justify-center py-5 text-base font-bold bg-white border-2 border-[var(--line)] hover:border-[var(--primary)]"
+              className="secondary-button btn-lg w-full flex justify-center bg-white border-2 hover:border-[var(--primary)]"
             >
               <Download className="w-5 h-5 mr-2" /> Download PDF
             </button>
             <button
               onClick={handleNewAssessment}
-              className="w-full py-5 rounded-xl border border-transparent text-[var(--muted)] font-bold text-sm hover:bg-slate-50 hover:text-[var(--ink)] transition-all mt-4 flex items-center justify-center gap-2"
+              className="ghost-button btn-lg w-full mt-4 flex justify-center gap-2"
             >
               <Plus className="w-4 h-4" /> Start A New Assessment
             </button>

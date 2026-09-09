@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAssessmentStore } from "@/store/assessment-store";
-import { MapPin, Search, ArrowRight, ArrowLeft, Navigation, Map } from "lucide-react";
+import { MapPin, Search, ArrowRight, Navigation, Map, CircleCheck } from "lucide-react";
 
 export default function LocationScreen() {
   const router = useRouter();
@@ -15,6 +15,7 @@ export default function LocationScreen() {
 
   const handleSearch = () => {
     if (!searchQuery) return;
+    // Simulate lookup
     setLocation({
       village: searchQuery,
       district: "Ahmedabad",
@@ -43,117 +44,113 @@ export default function LocationScreen() {
   };
 
   return (
-    <main className="welcome-page fade-in bg-[var(--cream)] min-h-screen relative overflow-hidden flex flex-col">
-      {/* Decorative abstract background element */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-slate-200 via-transparent to-transparent -z-10 rounded-bl-full opacity-30"></div>
+    <main className="flex-1 flex flex-col bg-[var(--cream)] relative overflow-hidden fade-in">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-50 via-transparent to-transparent -z-10 rounded-bl-full opacity-60"></div>
       
-      <div className="welcome-container p-6 sm:p-8 lg:p-12 flex-1 flex flex-col relative z-10">
-        <header className="mb-12">
-          <button 
-            onClick={() => router.push("/")}
-            className="ghost-button !p-0 !text-sm"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Home
-          </button>
-        </header>
-
-        <section className="flex-1 max-w-3xl mx-auto w-full flex flex-col justify-center">
-          
-          <div className="flex items-center gap-4 mb-8">
-             <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-[var(--line)] flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-[var(--primary)]" />
-             </div>
-             <div>
-                <div className="text-[10px] font-bold tracking-widest text-[var(--muted)] uppercase mb-1">Step 1 of 4</div>
-                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[var(--ink)]">
-                  Where will your business operate?
-                </h1>
-             </div>
-          </div>
-          
-          <p className="text-lg text-[var(--muted)] font-medium mb-12 leading-relaxed ml-16 max-w-xl">
-            Your location helps us understand nearby demand, competition, and local market conditions.
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-6 sm:px-8 py-12 lg:py-24">
+        
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--ink)] mb-4">
+            Where am I?
+          </h1>
+          <p className="text-lg text-[var(--muted)] font-medium max-w-2xl leading-relaxed">
+            Your location helps us analyze local market demand, competition, and identify government schemes available in your district.
           </p>
+        </div>
 
-          <div className="ml-16">
-            {!hasLocation ? (
-              <div className="space-y-6 max-w-xl">
-                <div className="relative flex items-center shadow-sm group">
-                  <Search className="absolute left-5 w-5 h-5 text-[var(--muted)] group-focus-within:text-[var(--primary)] transition-colors" />
+        <div className="flex-1 w-full max-w-2xl">
+          {!hasLocation ? (
+            <div className="space-y-6 slide-up">
+              <div>
+                <label className="premium-label" htmlFor="location-search">
+                  Search by village, town or district
+                </label>
+                <span className="helper-text">
+                  Enter your area to fetch local schemes and market data.
+                </span>
+                
+                <div className="relative flex items-center shadow-sm group mt-2">
+                  <Search className="absolute left-6 w-6 h-6 text-[var(--muted)] group-focus-within:text-[var(--primary)] transition-colors" />
                   <input 
+                    id="location-search"
                     type="text" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                    placeholder="Enter your village, town or district"
-                    className="w-full py-5 pl-14 pr-32 rounded-2xl border-2 border-[var(--line)] bg-white focus:outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-light)] text-lg font-medium transition-all"
+                    placeholder="e.g., Bopal, Ahmedabad"
+                    className="input-standard py-6 pl-16 pr-36 rounded-2xl text-xl font-medium shadow-sm"
                   />
                   <button 
                     onClick={handleSearch}
-                    className="absolute right-2 px-6 py-3 bg-[var(--ink)] hover:bg-black text-white rounded-xl font-bold text-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                    disabled={!searchQuery.trim()}
+                    className="absolute right-3 primary-button !h-10 !px-6"
                   >
                     Search
                   </button>
                 </div>
-
-                <div className="flex items-center gap-4 py-2 opacity-60">
-                  <div className="flex-1 h-px bg-slate-300"></div>
-                  <span className="text-[var(--muted)] text-xs font-bold tracking-widest uppercase">OR</span>
-                  <div className="flex-1 h-px bg-slate-300"></div>
-                </div>
-
-                <button 
-                  onClick={handleUseCurrentLocation}
-                  disabled={isLocating}
-                  className="w-full py-5 rounded-2xl border-2 border-[var(--line)] text-[var(--ink)] font-bold flex items-center justify-center gap-3 hover:bg-white hover:border-slate-300 transition-all disabled:opacity-50 bg-slate-50 hover:shadow-sm"
-                >
-                  <Navigation className="w-5 h-5 text-[var(--action)]" /> 
-                  {isLocating ? "Detecting location..." : "Use my current location"}
-                </button>
               </div>
-            ) : (
-              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-xl">
+
+              <div className="flex items-center gap-4 py-4">
+                <div className="flex-1 h-px bg-[var(--line)]"></div>
+                <span className="text-[var(--muted)] text-xs font-bold tracking-widest uppercase">OR</span>
+                <div className="flex-1 h-px bg-[var(--line)]"></div>
+              </div>
+
+              <button 
+                onClick={handleUseCurrentLocation}
+                disabled={isLocating}
+                className="secondary-button btn-lg w-full bg-slate-50 border-2"
+              >
+                <Navigation className="w-5 h-5 text-[var(--action)]" /> 
+                {isLocating ? "Detecting location..." : "Use my current location"}
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="card-standard p-8 md:p-10 !border-2 !border-[var(--success)] shadow-lg shadow-green-100 relative overflow-hidden flex flex-col md:flex-row md:items-center gap-8">
+                {/* Decorative map background hint */}
+                <div className="absolute right-0 bottom-0 opacity-5 w-64 h-64 pointer-events-none transform translate-x-12 translate-y-12">
+                   <Map className="w-full h-full" />
+                </div>
                 
-                <div className="p-8 rounded-3xl bg-white border-2 border-[var(--primary)] shadow-md relative overflow-hidden flex items-start gap-6">
-                  {/* Decorative map background hint */}
-                  <div className="absolute right-0 bottom-0 opacity-5 w-48 h-48 pointer-events-none transform translate-x-12 translate-y-12">
-                     <Map className="w-full h-full" />
+                <div className="w-20 h-20 rounded-2xl bg-green-50 text-[var(--success)] flex items-center justify-center flex-shrink-0 relative z-10 border border-green-100">
+                  <CircleCheck className="w-10 h-10" />
+                </div>
+                
+                <div className="relative z-10 flex-1">
+                  <h3 className="text-xs font-bold text-[var(--success)] mb-2 tracking-widest uppercase">Location Confirmed</h3>
+                  <div className="text-4xl font-extrabold text-[var(--ink)] mb-2 tracking-tight">
+                    {village}, {state}
+                  </div>
+                  <div className="text-[var(--muted)] text-lg font-medium flex items-center gap-2">
+                    <MapPin className="w-4 h-4" /> {district} District
                   </div>
                   
-                  <div className="w-14 h-14 rounded-2xl bg-[var(--primary-light)] text-[var(--primary)] flex items-center justify-center flex-shrink-0 relative z-10 border border-blue-100">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div className="relative z-10">
-                    <h3 className="text-[10px] font-bold text-[var(--primary)] mb-2 tracking-widest uppercase">Location Confirmed</h3>
-                    <div className="text-3xl font-extrabold text-[var(--ink)] mb-2 tracking-tight">
-                      {village}, {state}
-                    </div>
-                    <div className="text-[var(--muted)] text-base font-medium">
-                      {district} District
-                    </div>
-                    
-                    <button 
-                      onClick={() => setLocation({ village: null, district: null, state: null })}
-                      className="mt-6 text-sm font-bold text-[var(--action)] hover:text-[var(--action-hover)] underline underline-offset-4"
-                    >
-                      Change location
-                    </button>
+                  <div className="mt-6 bg-slate-50 p-4 rounded-xl border border-[var(--line)] text-sm font-medium text-[var(--ink)]">
+                    Location confirmed. We will use this location to understand your local market.
                   </div>
                 </div>
-
-                <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
-                  <button
-                    className="primary-button w-full sm:w-auto px-10 py-4 text-lg"
-                    onClick={handleContinue}
-                  >
-                    Continue <ArrowRight className="w-5 h-5 ml-2" />
-                  </button>
-                </div>
-                
               </div>
-            )}
-          </div>
-        </section>
+
+              <div className="flex flex-col sm:flex-row items-center gap-6">
+                <button
+                  className="primary-button btn-lg shadow-lg shadow-orange-500/20 hover:-translate-y-1 w-full sm:w-auto"
+                  onClick={handleContinue}
+                >
+                  Enter your profile details <ArrowRight className="btn-icon ml-1" />
+                </button>
+                <button 
+                  onClick={() => setLocation({ village: null, district: null, state: null })}
+                  className="text-sm font-bold text-[var(--muted)] hover:text-[var(--ink)] underline underline-offset-4"
+                >
+                  Change location
+                </button>
+              </div>
+              
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );

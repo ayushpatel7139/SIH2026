@@ -5,4 +5,8 @@ export interface SchemeMatch {
   financingCategory: string;
   eligibilitySignal: 'Potential match' | 'May be relevant';
   url: string;
+  potentialFit?: string[];
+  whyItMatches?: string;
+  source?: string;
+  lastUpdated?: string;
 }

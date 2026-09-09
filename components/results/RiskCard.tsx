@@ -1,9 +1,9 @@
-import { RiskAction } from '@/lib/feasibility';
-import { AlertCircle, Target, ShieldAlert } from "lucide-react";
+﻿import { RiskAction } from '@/lib/feasibility';
+import { CircleAlert, ShieldAlert } from "lucide-react";
 
 export default function RiskCard({ riskData, index }: { riskData: RiskAction, index?: number }) {
   return (
-    <div className="bg-white rounded-3xl border border-[var(--line)] p-8 shadow-sm h-full flex flex-col relative overflow-hidden transition-all hover:border-[var(--danger)] hover:shadow-md group hover:-translate-y-1">
+    <div className="card-interactive p-8 h-full flex flex-col relative overflow-hidden group hover:!border-[var(--danger)]">
       {index && (
         <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-full flex items-start justify-end p-6 transition-colors group-hover:bg-red-100">
           <span className="font-extrabold text-red-200 text-3xl leading-none">0{index}</span>
@@ -22,7 +22,7 @@ export default function RiskCard({ riskData, index }: { riskData: RiskAction, in
       
       <div className="bg-slate-50 rounded-2xl p-5 border border-[var(--line)]">
         <p className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-widest mb-2 flex items-center gap-2">
-          <Target className="w-3 h-3 text-[var(--action)]" /> Recommended Action
+          <CircleAlert className="w-3 h-3 text-[var(--action)]" /> Recommended Action
         </p>
         <p className="text-sm font-bold text-[var(--ink)] leading-snug">{riskData.action}</p>
       </div>

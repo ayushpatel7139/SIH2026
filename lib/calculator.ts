@@ -84,6 +84,15 @@ export function calculateFinancials(
 }
 
 export function formatCurrency(amount: number): string {
+  if (amount >= 100000) {
+    const lakhs = amount / 100000;
+    // Format to max 2 decimal places, removing trailing zeros
+    const formattedLakhs = new Intl.NumberFormat('en-IN', {
+      maximumFractionDigits: 2
+    }).format(lakhs);
+    return `₹${formattedLakhs} lakh`;
+  }
+  
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',

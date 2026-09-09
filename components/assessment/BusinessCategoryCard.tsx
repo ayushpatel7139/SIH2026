@@ -1,3 +1,3 @@
-export default function BusinessCategoryCard() {
+﻿export default function BusinessCategoryCard() {
   return null;
 }

@@ -1,3 +1,3 @@
-export default function AppFooter() {
+﻿export default function AppFooter() {
   return null;
 }

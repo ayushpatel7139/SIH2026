@@ -10,41 +10,52 @@ interface LocationState {
 }
 
 interface AssessmentStore extends LocationState, UserProfile, BusinessProfile, CapitalProfile {
+  assessmentId: string | null;
+  setAssessmentId: (id: string) => void;
   setLocation: (data: Partial<LocationState>) => void;
   setProfile: (data: Partial<UserProfile>) => void;
   setBusiness: (data: Partial<BusinessProfile>) => void;
   setCapital: (data: Partial<CapitalProfile>) => void;
+  loadAssessmentData: (data: any) => void;
+  resetAssessment: () => void;
 }
 
-export const useAssessmentStore = create<AssessmentStore>((set) => ({
-  // Location
+const initialState = {
+  assessmentId: null,
   latitude: null,
   longitude: null,
   village: null,
   district: null,
   state: null,
-  setLocation: (data) => set((state) => ({ ...state, ...data })),
-
-  // Profile
   entrepreneurType: null,
   socialCategory: null,
   gender: null,
   ageGroup: null,
   previousBusinessExperience: null,
   previousBusinessDetails: null,
-  setProfile: (data) => set((state) => ({ ...state, ...data })),
-
-  // Business
   businessCategory: null,
   businessIdea: null,
   businessStage: null,
   existingBusinessDuration: null,
   businessGoal: null,
-  setBusiness: (data) => set((state) => ({ ...state, ...data })),
-
-  // Capital
   ownInvestment: null,
   hasExistingLoan: null,
   existingLoanPayment: null,
+};
+
+export const useAssessmentStore = create<AssessmentStore>((set) => ({
+  ...initialState,
+  
+  setAssessmentId: (id) => set({ assessmentId: id }),
+  setLocation: (data) => set((state) => ({ ...state, ...data })),
+  setProfile: (data) => set((state) => ({ ...state, ...data })),
+  setBusiness: (data) => set((state) => ({ ...state, ...data })),
   setCapital: (data) => set((state) => ({ ...state, ...data })),
+  
+  loadAssessmentData: (data) => set({ ...data }),
+  
+  resetAssessment: () => set({ 
+    ...initialState, 
+    assessmentId: `ast_${Math.random().toString(36).substr(2, 9)}` 
+  }),
 }));

@@ -1,4 +1,4 @@
-import { ShieldAlert, Database, Calendar } from "lucide-react";
+﻿import { ShieldAlert, Database, Calendar } from "lucide-react";
 
 interface SourceBadgeProps {
   source: string;

@@ -1,5 +1,5 @@
-import { SwotInsight } from '@/lib/feasibility';
-import { ArrowUpRight, CheckCircle2, AlertTriangle, HelpCircle, ShieldCheck } from "lucide-react";
+﻿import { SwotInsight } from '@/lib/feasibility';
+import { CircleCheck, TriangleAlert, ArrowRight, ShieldAlert, Grid2X2 } from "lucide-react";
 
 interface SwotQuadrantProps {
   title: string;
@@ -16,7 +16,7 @@ export default function SwotQuadrant({ title, type, insights }: SwotQuadrantProp
           border: 'border-green-200', 
           icon: 'text-[var(--success)]',
           iconBg: 'bg-green-100', 
-          IconComp: ShieldCheck 
+          IconComp: CircleCheck 
         };
       case 'weakness': 
         return { 
@@ -24,7 +24,7 @@ export default function SwotQuadrant({ title, type, insights }: SwotQuadrantProp
           border: 'border-orange-200', 
           icon: 'text-[var(--warning)]', 
           iconBg: 'bg-orange-100', 
-          IconComp: AlertTriangle 
+          IconComp: TriangleAlert 
         };
       case 'opportunity': 
         return { 
@@ -32,7 +32,7 @@ export default function SwotQuadrant({ title, type, insights }: SwotQuadrantProp
           border: 'border-blue-200', 
           icon: 'text-[var(--primary)]', 
           iconBg: 'bg-blue-100', 
-          IconComp: ArrowUpRight 
+          IconComp: ArrowRight 
         };
       case 'threat': 
         return { 
@@ -40,7 +40,7 @@ export default function SwotQuadrant({ title, type, insights }: SwotQuadrantProp
           border: 'border-red-200', 
           icon: 'text-[var(--danger)]', 
           iconBg: 'bg-red-100', 
-          IconComp: AlertTriangle 
+          IconComp: ShieldAlert 
         };
       default: 
         return { 
@@ -48,7 +48,7 @@ export default function SwotQuadrant({ title, type, insights }: SwotQuadrantProp
           border: 'border-slate-200', 
           icon: 'text-[var(--muted)]', 
           iconBg: 'bg-slate-200', 
-          IconComp: HelpCircle 
+          IconComp: Grid2X2 
         };
     }
   };
