@@ -1,4 +1,4 @@
-export type EntrepreneurType = 'Individual' | 'Existing Business Owner' | 'First-time Entrepreneur';
+export type EntrepreneurType = 'Existing Business Owner' | 'First-time Entrepreneur';
 export type SocialCategory = 'SC' | 'ST' | 'OBC' | 'Other' | 'Prefer not to say';
 export type Gender = 'Woman' | 'Man' | 'Other' | 'Prefer not to say';
 export type AgeGroup = '18–25' | '26–35' | '36–50' | '51+';

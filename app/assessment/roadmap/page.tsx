@@ -131,13 +131,15 @@ export default function RoadmapScreen() {
               </div>
 
               {/* Node 3: Funding Gap */}
-              <div className="relative z-10 bg-[var(--primary)] text-white p-8 rounded-3xl shadow-xl shadow-blue-500/20 mb-12 flex flex-col hover:-translate-y-1 transition-all">
+              <div className={`relative z-10 p-8 rounded-3xl shadow-xl shadow-blue-500/20 mb-12 flex flex-col hover:-translate-y-1 transition-all ${financials.isEligible ? 'bg-[var(--primary)] text-white' : 'bg-slate-100 text-[var(--muted)] border border-slate-300'}`}>
                 <div className="flex justify-between items-start mb-6">
-                   <p className="text-[10px] font-bold uppercase tracking-widest text-blue-200">Estimated finance requirement</p>
-                   <Info className="w-5 h-5 text-blue-300" />
+                   <p className={`text-[10px] font-bold uppercase tracking-widest ${financials.isEligible ? 'text-blue-200' : 'text-slate-500'}`}>Estimated finance requirement</p>
+                   <Info className={`w-5 h-5 ${financials.isEligible ? 'text-blue-300' : 'text-slate-400'}`} />
                 </div>
-                <p className="text-4xl font-extrabold tracking-tighter mb-2">{formatCurrency(financials.fundingGap)}</p>
-                <p className="text-sm font-medium text-blue-200">This is roughly what you might need to finance.</p>
+                <p className={`text-4xl font-extrabold tracking-tighter mb-2 ${financials.isEligible ? 'text-white' : 'text-[var(--ink)]'}`}>{formatCurrency(financials.fundingGap)}</p>
+                <p className={`text-sm font-medium ${financials.isEligible ? 'text-blue-200' : 'text-slate-500'}`}>
+                  {financials.isEligible ? 'This is roughly what you might need to finance.' : 'This exceeds standard scheme maximums.'}
+                </p>
               </div>
 
             </div>
@@ -186,7 +188,7 @@ export default function RoadmapScreen() {
               </p>
               
               <div className="mt-6 flex justify-between items-center text-[10px] font-bold text-[var(--muted)] uppercase tracking-wider">
-                 <span>Based on {financials.tenureYears} Years</span>
+                 <span>{financials.isEligible ? `${financials.schemeName} — Based on ${financials.tenureYears} Years` : 'Outside Scheme Range'}</span>
                  <span>Illustrative Only</span>
               </div>
             </div>

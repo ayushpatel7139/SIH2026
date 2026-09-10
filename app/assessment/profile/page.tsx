@@ -48,8 +48,7 @@ export default function ProfileScreen() {
 
   const typeOptions: { val: EntrepreneurType, label: string, icon: any }[] = [
     { val: "First-time Entrepreneur", label: "I am starting fresh", icon: GraduationCap },
-    { val: "Existing Business Owner", label: "I want to expand", icon: Store },
-    { val: "Individual", label: "I am an individual applicant", icon: UserRound }
+    { val: "Existing Business Owner", label: "I want to expand", icon: Store }
   ];
 
   const socialOptions: SocialCategory[] = ["SC", "ST", "OBC", "Other", "Prefer not to say"];

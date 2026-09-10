@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useAssessmentStore } from "@/store/assessment-store";
+import { useAuthStore } from "@/store/auth-store";
 import { analyzeLocalMarket } from "@/lib/market-data";
 import { calculateFinancials, formatCurrency } from "@/lib/calculator";
 import { generateRiskAnalysis, calculateFeasibilityScore, FeasibilityResult } from "@/lib/feasibility";
@@ -16,6 +17,8 @@ import { Download, Share2, Plus, Store, MapPin, CheckCircle2, AlertTriangle, Tre
 
 export default function ReportScreen() {
   const router = useRouter();
+  const { saveAssessment, user } = useAuthStore();
+  const assessmentStore = useAssessmentStore();
   const {
     businessCategory,
     businessIdea,
@@ -27,7 +30,7 @@ export default function ReportScreen() {
     entrepreneurType,
     socialCategory,
     gender
-  } = useAssessmentStore();
+  } = assessmentStore;
 
   const [resultData, setResultData] = useState<FeasibilityResult | null>(null);
   const [financials, setFinancials] = useState<FinancialRoadmap | null>(null);
@@ -68,6 +71,21 @@ export default function ReportScreen() {
       fin.fundingGap
     );
     setSchemes(matches);
+
+    // Save as 100% completed
+    if (user && assessmentStore.assessmentId) {
+      const name = businessIdea || businessCategory || 'Completed Business Assessment';
+      const loc = village && district ? `${village}, ${district}` : district || 'Location set';
+      saveAssessment(
+        assessmentStore.assessmentId,
+        assessmentStore,
+        name,
+        loc,
+        'Completed',
+        '/report',
+        100
+      );
+    }
 
   }, [
     district, village, businessCategory, businessIdea, 
@@ -212,10 +230,15 @@ export default function ReportScreen() {
               <div className="card-standard p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
                  <div>
                     <p className="text-xs font-bold text-[var(--muted)] uppercase tracking-widest mb-1">Repayment Estimate</p>
-                    <p className="text-sm font-medium text-[var(--ink)]">Based on standard {financials.tenureYears}-year commercial terms</p>
+                    <p className="text-sm font-medium text-[var(--ink)]">
+                      {financials.isEligible ? `${financials.schemeName} — ${financials.tenureYears}-year term at ${financials.interestRate}%` : 'Outside defined scheme range'}
+                    </p>
                  </div>
                  <div className="text-right">
-                    <p className="text-3xl font-extrabold text-[var(--warning)] tracking-tight">{formatCurrency(financials.estimatedEmi)}<span className="text-sm font-bold text-[var(--muted)]">/mo</span></p>
+                    <p className="text-3xl font-extrabold text-[var(--warning)] tracking-tight">
+                      {financials.isEligible ? formatCurrency(financials.estimatedEmi) : 'N/A'}
+                      {financials.isEligible && <span className="text-sm font-bold text-[var(--muted)]">/mo</span>}
+                    </p>
                  </div>
               </div>
             </div>

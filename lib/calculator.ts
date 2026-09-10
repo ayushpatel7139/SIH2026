@@ -12,6 +12,11 @@ export interface FinancialRoadmap {
   estimatedEmi: number;
   tenureYears: number;
   repaymentRisk: 'LOWER RISK' | 'MODERATE' | 'HIGHER RISK';
+  schemeName: string;
+  interestRate: number;
+  moratoriumMonths: number;
+  maxLoanAmount: number;
+  isEligible: boolean;
 }
 
 function parseAmount(amountStr: string | null): number {
@@ -26,34 +31,56 @@ export function calculateFinancials(
   ownInvestmentStr: string | null,
   existingEmiStr: string | null
 ): FinancialRoadmap {
-  // 1. Estimate project cost based on category
-  let baseCost = 500000; // default 5L
   
-  if (businessCategory === 'Retail & Local Services') baseCost = 300000;
-  if (businessCategory === 'Manufacturing') baseCost = 800000;
-  if (businessCategory === 'Agriculture & Allied') baseCost = 400000;
-  
-  // 2. Breakdown
-  const equipment = Math.round(baseCost * 0.4);
-  const inventory = Math.round(baseCost * 0.3);
-  const workingCapital = Math.round(baseCost * 0.2);
-  const other = baseCost - equipment - inventory - workingCapital;
-
-  // 3. User contribution
   const ownContribution = parseAmount(ownInvestmentStr);
   const existingEmi = parseAmount(existingEmiStr);
+
+  // 1. Project Cost = Available Margin Capital / 10%
+  const projectCost = ownContribution * 10;
   
+  // 2. Scheme parameters based on Project Cost
+  let schemeName = 'Outside Scheme Range';
+  let interestRate = 0;
+  let tenureYears = 0;
+  let moratoriumMonths = 0;
+  let maxLoanAmount = 0;
+  let isEligible = false;
+
+  if (projectCost > 0 && projectCost <= 140000) {
+    schemeName = 'Micro Finance Scheme';
+    interestRate = 6.5; // 6.5%
+    tenureYears = 3;
+    moratoriumMonths = 3;
+    maxLoanAmount = Math.min(projectCost * 0.9, 125000);
+    isEligible = true;
+  } else if (projectCost > 140000 && projectCost <= 5000000) {
+    schemeName = 'Term Loan Scheme';
+    interestRate = 8.0; // 8%
+    tenureYears = 7;
+    moratoriumMonths = 6;
+    maxLoanAmount = Math.min(projectCost * 0.9, 4500000);
+    isEligible = true;
+  }
+
+  // 3. Breakdown (Arbitrary for demo, based on projectCost)
+  const equipment = Math.round(projectCost * 0.4);
+  const inventory = Math.round(projectCost * 0.3);
+  const workingCapital = Math.round(projectCost * 0.2);
+  const other = projectCost - equipment - inventory - workingCapital;
+
   // 4. Funding Gap & Loan
-  const fundingGap = Math.max(0, baseCost - ownContribution);
-  const indicativeLoan = fundingGap; // assuming 100% of gap is loan for demo
+  const fundingGap = Math.max(0, projectCost - ownContribution);
+  // Loan is bounded by the maxLoanAmount
+  const indicativeLoan = isEligible ? Math.min(fundingGap, maxLoanAmount) : 0;
   
-  // 5. EMI Calculation (Assume 9% interest over 5 years)
-  const tenureYears = 5;
-  const ratePerMonth = 0.09 / 12;
-  const numPayments = tenureYears * 12;
+  // 5. EMI Calculation using the scheme tenure and interest rate
   let estimatedEmi = 0;
-  
-  if (indicativeLoan > 0) {
+  if (isEligible && indicativeLoan > 0) {
+    const ratePerMonth = (interestRate / 100) / 12;
+    const numPayments = tenureYears * 12;
+    
+    // Note: The prompt states "EMI calculation MUST use the tenure selected by the scheme."
+    // If the standard EMI formula applies to the full tenure, it is:
     estimatedEmi = Math.round(
       (indicativeLoan * ratePerMonth * Math.pow(1 + ratePerMonth, numPayments)) / 
       (Math.pow(1 + ratePerMonth, numPayments) - 1)
@@ -61,7 +88,6 @@ export function calculateFinancials(
   }
 
   // 6. Risk Calculation
-  // Very simplistic risk model for demo
   const totalMonthlyObligation = estimatedEmi + existingEmi;
   let repaymentRisk: 'LOWER RISK' | 'MODERATE' | 'HIGHER RISK' = 'MODERATE';
   
@@ -72,14 +98,19 @@ export function calculateFinancials(
   }
 
   return {
-    projectCost: baseCost,
+    projectCost,
     breakdown: { equipment, inventory, workingCapital, other },
     ownContribution,
     fundingGap,
     indicativeLoan,
     estimatedEmi,
     tenureYears,
-    repaymentRisk
+    repaymentRisk,
+    schemeName,
+    interestRate,
+    moratoriumMonths,
+    maxLoanAmount,
+    isEligible
   };
 }
 

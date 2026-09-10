@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useAuthStore } from "@/store/auth-store";
 import { useAssessmentStore } from "@/store/assessment-store";
 import { useToastStore } from "@/store/toast-store";
+import { getCompletionPercentage } from "@/lib/completion";
 
 import BackButton from "@/components/common/BackButton";
 
@@ -49,7 +50,7 @@ export default function AssessmentHeader() {
         assessmentStore.district || 'Location not set', 
         'In Progress',
         pathname,
-        50
+        getCompletionPercentage(pathname)
       );
       
       setIsSaving(false);

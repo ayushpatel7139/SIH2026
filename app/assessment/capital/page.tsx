@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useAssessmentStore } from "@/store/assessment-store";
@@ -7,6 +7,7 @@ import { ExistingCommitments } from "@/types/assessment";
 
 import { useState } from "react";
 import { useAuthStore } from "@/store/auth-store";
+import { getCompletionPercentage } from "@/lib/completion";
 import AuthModal from "@/components/auth/AuthModal";
 
 export default function CapitalScreen() {
@@ -47,7 +48,7 @@ export default function CapitalScreen() {
       loc,
       'In Progress',
       '/assessment/capital',
-      50 // arbitrary completion percentage
+      getCompletionPercentage('/assessment/capital')
     );
   };
 
