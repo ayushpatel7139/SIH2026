@@ -190,59 +190,55 @@ export default function Home() {
 
              {/* Connecting SVG Lines */}
              <svg className="absolute inset-0 w-full h-full z-0 text-[var(--line)]" style={{ strokeDasharray: '4 4' }}>
-                <path d="M 100 150 Q 250 150 250 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
-                <path d="M 400 100 Q 250 150 250 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
-                <path d="M 100 400 Q 250 350 250 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
-                <path d="M 450 350 Q 250 350 250 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
+                <path d="M 30 80 Q 288 80 288 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
+                <path d="M 546 80 Q 288 80 288 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
+                <path d="M 30 420 Q 288 420 288 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
+                <path d="M 546 420 Q 288 420 288 250" fill="none" stroke="currentColor" strokeWidth="2" className="animate-[dash_20s_linear_infinite]" />
              </svg>
 
              {/* Node 1: Idea */}
-             <div className="absolute top-[20%] left-[10%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_6s_ease-in-out_infinite]">
+             <div className="absolute top-[8%] left-[-5%] sm:left-[0%] md:left-[2%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_6s_ease-in-out_infinite]">
                 <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500">
                    <Lightbulb className="w-5 h-5" />
                 </div>
-                <div>
-                   <div className="w-16 h-2 bg-slate-100 rounded-full mb-1.5"></div>
-                   <div className="w-10 h-2 bg-slate-100 rounded-full"></div>
+                <div className="flex flex-col">
+                   <span className="text-[11px] font-bold text-[var(--ink)] whitespace-nowrap">Personalised Guidance</span>
+                   <span className="text-[9px] text-[var(--muted)] font-medium whitespace-nowrap">Understand your business opportunity</span>
                 </div>
              </div>
 
              {/* Node 2: Market */}
-             <div className="absolute top-[10%] right-[15%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_7s_ease-in-out_infinite_1s]">
+             <div className="absolute top-[8%] right-[-5%] sm:right-[0%] md:right-[2%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_7s_ease-in-out_infinite_1s]">
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500">
                    <MapPin className="w-5 h-5" />
                 </div>
-                <div>
-                   <div className="w-12 h-2 bg-slate-100 rounded-full mb-1.5"></div>
-                   <div className="w-20 h-2 bg-slate-100 rounded-full"></div>
+                <div className="flex flex-col">
+                   <span className="text-[11px] font-bold text-[var(--ink)] whitespace-nowrap">Hyper-Local Analysis</span>
+                   <span className="text-[9px] text-[var(--muted)] font-medium whitespace-nowrap">Insights from your local market</span>
                 </div>
              </div>
 
              {/* Node 3: Financials */}
-             <div className="absolute bottom-[20%] left-[15%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_5s_ease-in-out_infinite_2s]">
+             <div className="absolute bottom-[8%] left-[-5%] sm:left-[0%] md:left-[2%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_5s_ease-in-out_infinite_2s]">
                 <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
                    <Wallet className="w-5 h-5" />
                 </div>
-                <div>
-                   <div className="w-14 h-2 bg-slate-100 rounded-full mb-1.5"></div>
-                   <div className="w-14 h-2 bg-slate-100 rounded-full"></div>
+                <div className="flex flex-col">
+                   <span className="text-[11px] font-bold text-[var(--ink)] whitespace-nowrap">Smart Financial Planning</span>
+                   <span className="text-[9px] text-[var(--muted)] font-medium whitespace-nowrap">Know your funding & repayment</span>
                 </div>
              </div>
 
              {/* Node 4: Schemes */}
-             <div className="absolute bottom-[15%] right-[10%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_8s_ease-in-out_infinite_0.5s]">
+             <div className="absolute bottom-[8%] right-[-5%] sm:right-[0%] md:right-[2%] bg-white p-4 rounded-2xl shadow-lg border border-[var(--line)] flex items-center gap-3 z-10 animate-[float_8s_ease-in-out_infinite_0.5s]">
                 <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-500">
                    <FileCheck className="w-5 h-5" />
                 </div>
-                <div>
-                   <div className="w-20 h-2 bg-slate-100 rounded-full mb-1.5"></div>
-                   <div className="w-12 h-2 bg-slate-100 rounded-full"></div>
+                <div className="flex flex-col">
+                   <span className="text-[11px] font-bold text-[var(--ink)] whitespace-nowrap">Feasibility Report</span>
+                   <span className="text-[9px] text-[var(--muted)] font-medium whitespace-nowrap">Make informed business decisions</span>
                 </div>
              </div>
-
-             {/* Small decorative floating dots */}
-             <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-blue-400 rounded-full blur-[1px] animate-pulse"></div>
-             <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-orange-400 rounded-full blur-[1px] animate-pulse delay-700"></div>
 
           </div>
         </section>
