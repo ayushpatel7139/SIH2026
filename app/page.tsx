@@ -73,10 +73,10 @@ export default function Home() {
       <header className="w-full max-w-7xl mx-auto px-6 sm:px-8 py-6 flex items-center justify-between relative z-20">
         <div className="flex items-center gap-4 group cursor-pointer" onClick={() => router.push('/')}>
           <div className="flex items-center justify-center w-12 h-12 rounded-xl overflow-hidden bg-white shadow-sm shrink-0 p-1.5 transition-transform group-hover:scale-105">
-            <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+            <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col justify-center">
-            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-xl uppercase">UDAAN</div>
+            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-xl uppercase">MIRAI</div>
           </div>
         </div>
 

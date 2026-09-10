@@ -73,10 +73,10 @@ export default function AssessmentHeader() {
           </div>
           <Link href="/" className="flex items-center gap-4 group hidden lg:flex">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl overflow-hidden bg-white shadow-sm shrink-0 p-1.5">
-              <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+              <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-2xl uppercase group-hover:text-[var(--primary)] transition-colors">UDAAN</div>
+              <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-2xl uppercase group-hover:text-[var(--primary)] transition-colors">MIRAI</div>
             </div>
           </Link>
         </div>

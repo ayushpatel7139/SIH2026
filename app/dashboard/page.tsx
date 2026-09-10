@@ -47,10 +47,10 @@ export default function DashboardPage() {
       <header className="p-6 sm:px-8 sm:py-6 relative z-20 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-[var(--line)] shadow-sm">
         <Link href="/" className="inline-flex items-center gap-4 text-[var(--ink)] hover:opacity-80 transition-opacity">
           <div className="flex items-center justify-center w-12 h-12 rounded-xl overflow-hidden bg-white shadow-sm shrink-0 p-1.5 hidden sm:flex">
-            <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+            <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-2xl uppercase">UDAAN</div>
+            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-2xl uppercase">MIRAI</div>
           </div>
         </Link>
         <button 

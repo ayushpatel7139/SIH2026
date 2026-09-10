@@ -82,10 +82,10 @@ export default function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps
            </button>
            <div className="absolute bottom-6 left-8 flex items-center gap-4">
               <div className="flex items-center justify-center w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-lg shrink-0 p-1.5">
-                <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+                <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
               </div>
               <div>
-                <div className="font-extrabold tracking-[0.1em] text-white leading-none text-3xl uppercase">UDAAN</div>
+                <div className="font-extrabold tracking-[0.1em] text-white leading-none text-3xl uppercase">MIRAI</div>
               </div>
            </div>
         </div>

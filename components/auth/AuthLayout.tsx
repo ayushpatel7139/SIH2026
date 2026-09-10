@@ -19,10 +19,10 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
         
         <div className="relative z-10 flex items-center gap-4 slide-up">
           <div className="flex items-center justify-center w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-lg shrink-0 p-1.5">
-            <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+            <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <div className="font-extrabold tracking-[0.1em] leading-none text-3xl uppercase">UDAAN</div>
+            <div className="font-extrabold tracking-[0.1em] leading-none text-3xl uppercase">MIRAI</div>
           </div>
         </div>
 
@@ -42,10 +42,10 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
         
         <div className="md:hidden flex items-center gap-4 mb-12 self-start">
           <div className="flex items-center justify-center w-14 h-14 rounded-2xl overflow-hidden bg-white shadow-sm shrink-0 p-1.5">
-            <img src="/udaan-logo.jpg" alt="Udaan Logo" className="w-full h-full object-contain" />
+            <img src="/udaan-logo.jpg" alt="Mirai Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-3xl uppercase">UDAAN</div>
+            <div className="font-extrabold text-[var(--ink)] tracking-[0.1em] leading-none text-3xl uppercase">MIRAI</div>
           </div>
         </div>
 

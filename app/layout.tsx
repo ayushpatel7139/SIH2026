@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Udaan',
-  description: 'Udaan - Small Steps, Higher Tomorrows',
+  title: 'Mirai',
+  description: 'Mirai - Small Steps, Higher Tomorrows',
 };
 
 import ToastProvider from '@/components/common/ToastProvider';
